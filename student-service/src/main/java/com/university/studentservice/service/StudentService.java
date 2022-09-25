@@ -5,6 +5,7 @@ import com.university.studentservice.dto.AddressResponse;
 import com.university.studentservice.dto.StudentRequest;
 import com.university.studentservice.dto.StudentResponse;
 import com.university.studentservice.entity.Student;
+import com.university.studentservice.feignclients.AddressFeignClient;
 import com.university.studentservice.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class StudentService {
     @Autowired
     WebClient webClient;
 
+    @Autowired
+    AddressFeignClient addressFeignClient;
 
     public StudentResponse createStudent(StudentRequest request){
         Student student=new Student();
@@ -35,8 +38,8 @@ public class StudentService {
         studentResponse.setLastName(student.getLastName());
         studentResponse.setEmail(student.getEmail());
         studentResponse.setId(student.getId());
-        studentResponse.setAddressResponse(getAddressById(student.getId()));
-
+        //studentResponse.setAddressResponse(getAddressById(student.getId()));
+        studentResponse.setAddressResponse(addressFeignClient.getById(student.getId()));
         return studentResponse;
 
     }
@@ -50,7 +53,8 @@ public class StudentService {
         studentResponse.setLastName(student.getLastName());
         studentResponse.setEmail(student.getEmail());
         studentResponse.setId(student.getId());
-        studentResponse.setAddressResponse(getAddressById(id));
+        //studentResponse.setAddressResponse(getAddressById(student.getAddressId()));
+        studentResponse.setAddressResponse(addressFeignClient.getById(student.getAddressId()));
         return studentResponse;
     }
 

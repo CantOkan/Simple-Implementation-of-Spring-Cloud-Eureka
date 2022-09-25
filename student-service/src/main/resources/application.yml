@@ -11,4 +11,4 @@ server:
 
 address:
   service:
-    url: http://localhost:8082/api/address
+    url: http://localhost:8082
