@@ -1,6 +1,6 @@
 package com.university.studentservice.feignclients;
 
-
+/*
 import feign.Feign;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
@@ -15,3 +15,4 @@ public class AddressServiceLoadBalConfig {
         return Feign.builder();
     }
 }
+*/
